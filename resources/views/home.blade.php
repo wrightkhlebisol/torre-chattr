@@ -8,12 +8,11 @@
         <h3 class="text-3xl mb-1">
             Senior Backend Engineer - Craft & Web Prototyping
         </h3>
-        <p class="text-lg">Started by: Author @ Time</p>
+        <p class="text-lg inline">Started by: Author @ Time</p>
+        <create-chattr></create-chattr>
     </div>
 
-    <div class="flex-1">
-        <button>Create Chattr</button>
-    </div>
+
     @include('_comment_section')
     @include('_comment_section')
     @include('_comment_section')
