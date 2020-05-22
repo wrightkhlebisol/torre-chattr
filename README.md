@@ -8,7 +8,7 @@ Torre Chattr is a web application based on the Torre api which gives Torre users
 - Search for a particular opportunity using keywords or by typing the slugged name of the oppotunity.
 - If their is a conversation around the opportunity already you'll see them and you can join in too, else, you can start the conversation.
 
-Torre Chattr is accessible, powerful, and provides tools required for large, robust applications.
+Torre Chattr is accessible and open to everyone
 
 ## License
 
