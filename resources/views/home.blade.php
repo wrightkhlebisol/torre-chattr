@@ -2,26 +2,24 @@
 
 @section('content')
 <div class="container mx-auto">
-    <div class="flex w-full bg-gray-500 h-18 p-4">
-        <div class="flex-1">
-            <h2 class="font-bold text-4xl">
-                <img src="https://trello-attachments.s3.amazonaws.com/5c47b7259b4e3435cc6a19e7/133x133/66c1d4d8dce3a6cda63d4bb815c02af3/Torre_%28generic%29_-_Dark_icon_-_Lime.png" width="50" class="inline">
-                Chattr
-            </h2>
-        </div>
-        <div class="flex-1">
-            <form action="#">
-                <input class="bg-white m focus:outline-none w-full focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 appearance-none leading-normal" type="search" placeholder="jane@example.com">
-            </form>
-        </div>
+    @include('_navbar_search')
+
+    <div class="flex-1 my-10">
+        <h3 class="text-3xl mb-1">
+            Senior Backend Engineer - Craft & Web Prototyping
+        </h3>
+        <p class="text-lg">Started by: Author @ Time</p>
     </div>
 
-    <div class="grid grid-cols-1">
-        <div>
-            <div class="flex">
-                <example-component></example-component>
-            </div>
-        </div>
+    <div class="flex-1">
+        <button>Create Chattr</button>
     </div>
+    @include('_comment_section')
+    @include('_comment_section')
+    @include('_comment_section')
+    @include('_comment_section')
+    @include('_comment_section')
+    @include('_comment_section')
+
 </div>
 @endsection
