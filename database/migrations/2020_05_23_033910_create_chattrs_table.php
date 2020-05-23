@@ -16,7 +16,7 @@ class CreateChattrsTable extends Migration
         Schema::create('chattrs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('job_id');
-            $table->foreignId('created_by');
+            $table->foreignId('torre_details_id');
             $table->longText('chattr');
             $table->integer('likes')->default(0);
             $table->integer('dislike')->default(0);
@@ -27,8 +27,8 @@ class CreateChattrsTable extends Migration
             ->on('jobs')
             ->onDelete('cascade');
 
-            $table->foreign('created_by')
-            ->references('torre_username')
+            $table->foreign('torre_details_id')
+            ->references('id')
             ->on('torre_details')
             ->onDelete('cascade');
         });

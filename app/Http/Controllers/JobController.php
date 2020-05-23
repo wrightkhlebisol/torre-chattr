@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CreateJobsTableController extends Controller
+class JobController extends Controller
 {
     //
 }

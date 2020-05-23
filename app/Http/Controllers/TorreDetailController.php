@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\CreateTorreDetailsTable;
+use App\TorreDetail;
 use Illuminate\Http\Request;
 
-class CreateTorreDetailsTableController extends Controller
+class TorreDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CreateTorreDetailsTableController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CreateTorreDetailsTable  $createTorreDetailsTable
+     * @param  \App\TorreDetail  $torreDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(CreateTorreDetailsTable $createTorreDetailsTable)
+    public function show(TorreDetail $torreDetail)
     {
         //
     }
@@ -52,10 +52,10 @@ class CreateTorreDetailsTableController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CreateTorreDetailsTable  $createTorreDetailsTable
+     * @param  \App\TorreDetail  $torreDetail
      * @return \Illuminate\Http\Response
      */
-    public function edit(CreateTorreDetailsTable $createTorreDetailsTable)
+    public function edit(TorreDetail $torreDetail)
     {
         //
     }
@@ -64,10 +64,10 @@ class CreateTorreDetailsTableController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CreateTorreDetailsTable  $createTorreDetailsTable
+     * @param  \App\TorreDetail  $$torreDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CreateTorreDetailsTable $createTorreDetailsTable)
+    public function update(Request $request, TorreDetail $torreDetail)
     {
         //
     }
@@ -75,10 +75,10 @@ class CreateTorreDetailsTableController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CreateTorreDetailsTable  $createTorreDetailsTable
+     * @param  \App\TorreDetail  $$torreDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CreateTorreDetailsTable $createTorreDetailsTable)
+    public function destroy(TorreDetail $torreDetail)
     {
         //
     }
