@@ -2,7 +2,7 @@
     <span class="lg:w-2/3 w-1/2">
         <button class="border-solid border-2 mb-5 border-gray-200 rounded-full lg:text-sm lg:p-2 p-1 float-right" @click="toggleCreateChattr">Create Chattr 🖊</button>
         <div v-if="toggleChattr">
-            <form @submit.prevent="createChattr">
+            <form @submit="createChattr">
                 <div class="mb-2">
                     <input type="text" class="w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm" placeholder="Your Torre username" v-model="username" @blur="getUserProfile">
                     <p class="text-green-400 text-xs">..fetching user records from torre servers</p>
