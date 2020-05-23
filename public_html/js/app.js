@@ -37551,89 +37551,78 @@ var render = function() {
     _vm._v(" "),
     _vm.toggleChattr
       ? _c("div", [
-          _c(
-            "form",
-            {
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.createChattr($event)
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "mb-2" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.username,
-                      expression: "username"
-                    }
-                  ],
-                  staticClass:
-                    "w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm",
-                  attrs: { type: "text", placeholder: "Your Torre username" },
-                  domProps: { value: _vm.username },
-                  on: {
-                    blur: _vm.getUserProfile,
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.username = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-green-400 text-xs" }, [
-                  _vm._v("..fetching user records from torre servers")
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-red-400 text-xs" }, [
-                  _vm._v("..invalid username, please update the username field")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("textarea", {
+          _c("form", { on: { submit: _vm.createChattr } }, [
+            _c("div", { staticClass: "mb-2" }, [
+              _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.chattr,
-                    expression: "chattr"
+                    value: _vm.username,
+                    expression: "username"
                   }
                 ],
                 staticClass:
                   "w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm",
-                attrs: {
-                  name: "chattr",
-                  id: "chattr",
-                  placeholder: "Create some chattr around this job opportunity"
-                },
-                domProps: { value: _vm.chattr },
+                attrs: { type: "text", placeholder: "Your Torre username" },
+                domProps: { value: _vm.username },
                 on: {
+                  blur: _vm.getUserProfile,
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.chattr = $event.target.value
+                    _vm.username = $event.target.value
                   }
                 }
               }),
               _vm._v(" "),
-              _c("input", {
-                staticClass:
-                  "cursor-pointer rounded-md py-2 px-5 text-white text-sm bg-black",
-                attrs: { type: "submit", value: "Publish" }
-              }),
+              _c("p", { staticClass: "text-green-400 text-xs" }, [
+                _vm._v("..fetching user records from torre servers")
+              ]),
               _vm._v(" "),
-              _c("p", { staticClass: "text-red-400" }, [
-                _vm._v(_vm._s(_vm.chattr) + " from " + _vm._s(_vm.username))
+              _c("p", { staticClass: "text-red-400 text-xs" }, [
+                _vm._v("..invalid username, please update the username field")
               ])
-            ]
-          )
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.chattr,
+                  expression: "chattr"
+                }
+              ],
+              staticClass:
+                "w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm",
+              attrs: {
+                name: "chattr",
+                id: "chattr",
+                placeholder: "Create some chattr around this job opportunity"
+              },
+              domProps: { value: _vm.chattr },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.chattr = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass:
+                "cursor-pointer rounded-md py-2 px-5 text-white text-sm bg-black",
+              attrs: { type: "submit", value: "Publish" }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-red-400" }, [
+              _vm._v(_vm._s(_vm.chattr) + " from " + _vm._s(_vm.username))
+            ])
+          ])
         ])
       : _vm._e()
   ])
@@ -50094,8 +50083,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\Torre-chattr\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\Torre-chattr\resources\css\main.css */"./resources/css/main.css");
+__webpack_require__(/*! C:\laragon\www\torre-chattr\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\torre-chattr\resources\css\main.css */"./resources/css/main.css");
 
 
 /***/ })
