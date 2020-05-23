@@ -1921,20 +1921,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      chattr: "Our text",
-      toggleChattr: true
+      chattr: "",
+      toggleChattr: false,
+      username: ""
     };
   },
   methods: {
-    createChattr: function createChattr() {
+    getUserProfile: function getUserProfile() {
+      this.username;
+    },
+    toggleCreateChattr: function toggleCreateChattr() {
       this.toggleChattr = !this.toggleChattr;
+    },
+    createChattr: function createChattr() {
+      if (this.chattr) {
+        alert(this.chattr);
+      } else {
+        alert("Please enter some chattr");
+      }
     }
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  mounted: function mounted() {// console.log('Component mounted.')
   }
 });
 
@@ -37516,53 +37528,92 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("span", [
+  return _c("span", { staticClass: "lg:w-2/3 w-1/2" }, [
     _c(
       "button",
       {
         staticClass:
-          "border-solid border-2 mb-5 border-gray-200 rounded-full p-2",
-        on: { click: _vm.createChattr }
+          "border-solid border-2 mb-5 border-gray-200 rounded-full lg:text-sm lg:p-2 p-1 float-right",
+        on: { click: _vm.toggleCreateChattr }
       },
-      [_vm._v("Create Chattr")]
+      [_vm._v("Create Chattr 🖊")]
     ),
     _vm._v(" "),
     _vm.toggleChattr
       ? _c("div", [
-          _c("form", [
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.chattr,
-                  expression: "chattr"
-                }
-              ],
-              staticClass:
-                "w-full p-2 h-30 border-solid border-2 rounded-md border-black-200",
-              attrs: {
-                name: "chattr",
-                id: "chattr",
-                placeholder: "Create some chattr around this opportunity"
-              },
-              domProps: { value: _vm.chattr },
+          _c(
+            "form",
+            {
               on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.chattr = $event.target.value
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.createChattr($event)
                 }
               }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass:
-                "cursor-pointer rounded-md py-2 px-5 text-white bg-black",
-              attrs: { type: "submit", value: "Publish" }
-            })
-          ])
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.username,
+                    expression: "username"
+                  }
+                ],
+                staticClass:
+                  "w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm mb-2",
+                attrs: { type: "text", placeholder: "Your Torre username" },
+                domProps: { value: _vm.username },
+                on: {
+                  blur: _vm.getUserProfile,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.username = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.chattr,
+                    expression: "chattr"
+                  }
+                ],
+                staticClass:
+                  "w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm",
+                attrs: {
+                  name: "chattr",
+                  id: "chattr",
+                  placeholder: "Create some chattr around this opportunity"
+                },
+                domProps: { value: _vm.chattr },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.chattr = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                staticClass:
+                  "cursor-pointer rounded-md py-2 px-5 text-white text-sm bg-black",
+                attrs: { type: "submit", value: "Publish" }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-red-400" }, [
+                _vm._v(_vm._s(_vm.chattr) + " from " + _vm._s(_vm.username))
+              ])
+            ]
+          )
         ])
       : _vm._e()
   ])
