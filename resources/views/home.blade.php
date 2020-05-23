@@ -15,7 +15,7 @@
     </div>
 
     @foreach($chattrs as $chattr)
-    @include('_comment_section')
+        <chattr-component chattr="{{ $chattr->chattr }}" likes="{{ $chattr->likes }}" dislikes="{{ $chattr->dislike }}" image-link="{{ $chattr->torre_details_id }}"></chattr-component>
     @endforeach
 
 </div>

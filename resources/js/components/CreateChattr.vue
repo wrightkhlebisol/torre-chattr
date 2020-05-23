@@ -11,7 +11,7 @@
                 </div>
                 <textarea class="w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm" name="chattr" id="chattr" placeholder="Create some chattr around this job opportunity" v-model="chattr"></textarea>
                 <input type="submit" class="cursor-pointer rounded-md py-2 px-5 text-white text-sm bg-black" value="Publish">
-                <p class="text-red-400">{{ chattr }} from {{ username }}</p>
+                <p class="text-red-400">User found: {{ username }}</p>
             </form>
         </div>
     </span>
@@ -26,7 +26,7 @@
                 toggleChattr: false,
                 username: "",
                 searchUser: false,
-                searchUserError: false
+                searchUserError: false,
             }
         },
         methods: {

@@ -15,3 +15,7 @@
 - Created model, factory, migrations, seeders and resources controller for the chattrs
 - Created database tables for chattrs, jobs, and torre_details
 - Modelled data using following relationship structures (one-to-many between torre_details and jobs, one-to-many between torre_details and chatter, finally many-to-one between chatters and jobs)
+- Implemented chattr persisting feature
+- Created dynamic like / unlike feature
+- Converted public folder to public_html to deploy on subdomain
+- Deployed to the server

@@ -21,6 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('create-chattr', require('./components/CreateChattr.vue').default);
+Vue.component('chattr-component', require('./components/ChattrComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
