@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class TorreDetail extends Model
 {
     //
+    protected $guarded = [];
 }

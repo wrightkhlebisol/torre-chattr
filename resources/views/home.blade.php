@@ -14,13 +14,9 @@
         </div>
     </div>
 
-
+    @foreach($chattrs as $chattr)
     @include('_comment_section')
-    @include('_comment_section')
-    @include('_comment_section')
-    @include('_comment_section')
-    @include('_comment_section')
-    @include('_comment_section')
+    @endforeach
 
 </div>
 @endsection

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Chattr;
+use App\Jobs;
+use App\TorreDetail;
+use Facade\FlareClient\Http\Response;
+use FFI\CData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ChattrController extends Controller
 {
@@ -15,6 +20,8 @@ class ChattrController extends Controller
     public function index()
     {
         //
+        $chattrs = Chattr::all();
+        return view('home', ['chattrs' => $chattrs]);
     }
 
     /**
@@ -27,6 +34,12 @@ class ChattrController extends Controller
         //
     }
 
+    Public function getTorreUserDetails(Request $request){
+        $torre_username = $request->user;
+        $torreUserDetails = Http::get('https://bio.torre.co/api/bios/' . $torre_username);
+        return $torreUserDetails;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,6 +49,23 @@ class ChattrController extends Controller
     public function store(Request $request)
     {
         //
+        $torre_username = $request->user;
+        $chattr_data = $request->chattr;
+        $createdTorreUser = TorreDetail::firstOrCreate([
+            'torre_username' => $torre_username
+        ]);
+
+
+
+        $latestChattr = Chattr::create([
+            'job_id' => 1,
+            'torre_details_id' => $createdTorreUser->id,
+            'chattr' => $chattr_data
+        ]);
+        // $userId = $createdTorreUser;
+        return $latestChattr;
+
+
     }
 
     /**
@@ -58,6 +88,7 @@ class ChattrController extends Controller
     public function edit(Chattr $chattr)
     {
         //
+
     }
 
     /**

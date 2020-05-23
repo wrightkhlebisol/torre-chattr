@@ -1936,23 +1936,24 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getUserProfile: function getUserProfile() {
-      axios.get("https://bio.torre.co/api/bios/".concat(this.username)).then(function (res) {
-        return console.log(res);
-      })["catch"](function (e) {
-        return console.log(e);
-      });
-      this.username;
+    getUserProfile: function getUserProfile() {// axios
+      // .get(`https://bio.torre.co/api/bios/${this.username}`)
+      // .then(res => console.log(res))
+      // .catch(e => console.log(e))
+      // this.username
     },
     toggleCreateChattr: function toggleCreateChattr() {
       this.toggleChattr = !this.toggleChattr;
     },
     createChattr: function createChattr() {
-      if (this.chattr) {
-        alert(this.chattr);
-      } else {
-        alert("Please enter some chattr");
-      }
+      axios.post('/', {
+        user: this.username,
+        chattr: this.chattr
+      }).then()["catch"](); // if(this.chattr){
+      //     alert(this.chattr)
+      // }else{
+      //     alert("Please enter some chattr")
+      // }
     }
   },
   mounted: function mounted() {// console.log('Component mounted.')

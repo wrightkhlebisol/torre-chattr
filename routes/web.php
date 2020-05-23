@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'ChattrController@index');
+
+Route::post('/', 'ChattrController@store');
 
 Auth::routes();
 

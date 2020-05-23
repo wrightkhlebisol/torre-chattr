@@ -28,21 +28,26 @@
         },
         methods: {
             getUserProfile(){
-                axios
-                .get(`https://bio.torre.co/api/bios/${this.username}`)
-                .then(res => console.log(res))
-                .catch(e => console.log(e))
-                this.username
+                // axios
+                // .get(`https://bio.torre.co/api/bios/${this.username}`)
+                // .then(res => console.log(res))
+                // .catch(e => console.log(e))
+                // this.username
             },
             toggleCreateChattr(){
                 this.toggleChattr = !this.toggleChattr;
             },
             createChattr(){
-                if(this.chattr){
-                    alert(this.chattr)
-                }else{
-                    alert("Please enter some chattr")
-                }
+                axios.post('/', {
+                    user: this.username,
+                    chattr: this.chattr
+                }).then()
+                .catch()
+                // if(this.chattr){
+                //     alert(this.chattr)
+                // }else{
+                //     alert("Please enter some chattr")
+                // }
             }
         },
         mounted() {
