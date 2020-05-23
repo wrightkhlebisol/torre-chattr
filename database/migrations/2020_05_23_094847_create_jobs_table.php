@@ -13,7 +13,7 @@ class CreateJobsTable extends Migration
      */
     public function up()
     {
-        Schema::create('jobs_table', function (Blueprint $table) {
+        Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('job_title')->unique();
             $table->foreignId('torre_details_id')->constrained()
@@ -33,6 +33,6 @@ class CreateJobsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobs_table');
+        Schema::dropIfExists('jobs');
     }
 }
