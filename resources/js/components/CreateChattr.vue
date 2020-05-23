@@ -5,8 +5,9 @@
             <form @submit="createChattr">
                 <div class="mb-2">
                     <input type="text" class="w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm" placeholder="Your Torre username" v-model="username" @blur="getUserProfile">
-                    <p class="text-green-400 text-xs">..fetching user records from torre servers</p>
-                    <p class="text-red-400 text-xs">..invalid username, please update the username field</p>
+
+                    <p class="text-green-400 text-xs" v-if="searchUser">..fetching user records from torre servers</p>
+                    <p class="text-red-400 text-xs" v-if="searchUserError">..invalid username, please update the username field</p>
                 </div>
                 <textarea class="w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm" name="chattr" id="chattr" placeholder="Create some chattr around this job opportunity" v-model="chattr"></textarea>
                 <input type="submit" class="cursor-pointer rounded-md py-2 px-5 text-white text-sm bg-black" value="Publish">
@@ -24,15 +25,25 @@
                 chattr: "",
                 toggleChattr: false,
                 username: "",
+                searchUser: false,
+                searchUserError: false
             }
         },
         methods: {
             getUserProfile(){
-                // axios
-                // .get(`https://bio.torre.co/api/bios/${this.username}`)
-                // .then(res => console.log(res))
-                // .catch(e => console.log(e))
-                // this.username
+                this.searchUser = true;
+                axios.post(`/getTorreDetails`, {
+                    'user': this.username
+                })
+                .then((res) => {
+                    this.searchUser = false;
+                    if(res.code == "011002"){
+                        this.searchUserError = true,
+                        console.log(res.code)
+                    }else{
+                        console.log(res)
+                    }
+                }).catch(e => console.log(e))
             },
             toggleCreateChattr(){
                 this.toggleChattr = !this.toggleChattr;

@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'ChattrController@index');
 
+Route::post('/getTorreDetails', 'ChattrController@getTorreUserDetails');
+
 Route::post('/', 'ChattrController@store');
 
 Auth::routes();
