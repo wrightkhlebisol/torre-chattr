@@ -36,8 +36,12 @@ class ChattrController extends Controller
 
     Public function getTorreUserDetails(Request $request){
         $torre_username = $request->user;
-        $torreUserDetails = Http::get('https://bio.torre.co/api/bios/' . $torre_username);
-        return $torreUserDetails;
+        $response = Http::get('https://bio.torre.co/api/bios/' . $torre_username);
+        if($response->successful()){
+            return $response->json();
+        }else{
+            return $response->body();
+        }
     }
 
     /**
