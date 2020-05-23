@@ -6,7 +6,7 @@
     </div>
     <div class="flex-1">
         <form action="#">
-            <input class="bg-white m focus:outline-none w-full focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 appearance-none leading-normal" type="search" placeholder="Enter search term">
+            <input class="bg-white m focus:outline-none w-full focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 appearance-none leading-normal" type="search" placeholder="Enter id of job opportunity">
         </form>
     </div>
 </nav>

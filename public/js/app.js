@@ -1923,6 +1923,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1933,6 +1937,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getUserProfile: function getUserProfile() {
+      axios.get("https://bio.torre.co/api/bios/".concat(this.username)).then(function (res) {
+        return console.log(res);
+      })["catch"](function (e) {
+        return console.log(e);
+      });
       this.username;
     },
     toggleCreateChattr: function toggleCreateChattr() {
@@ -37552,29 +37561,39 @@ var render = function() {
               }
             },
             [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.username,
-                    expression: "username"
-                  }
-                ],
-                staticClass:
-                  "w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm mb-2",
-                attrs: { type: "text", placeholder: "Your Torre username" },
-                domProps: { value: _vm.username },
-                on: {
-                  blur: _vm.getUserProfile,
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              _c("div", { staticClass: "mb-2" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.username,
+                      expression: "username"
                     }
-                    _vm.username = $event.target.value
+                  ],
+                  staticClass:
+                    "w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm",
+                  attrs: { type: "text", placeholder: "Your Torre username" },
+                  domProps: { value: _vm.username },
+                  on: {
+                    blur: _vm.getUserProfile,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.username = $event.target.value
+                    }
                   }
-                }
-              }),
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-green-400 text-xs" }, [
+                  _vm._v("..fetching user records from torre servers")
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-red-400 text-xs" }, [
+                  _vm._v("..invalid username, please update the username field")
+                ])
+              ]),
               _vm._v(" "),
               _c("textarea", {
                 directives: [
@@ -37590,7 +37609,7 @@ var render = function() {
                 attrs: {
                   name: "chattr",
                   id: "chattr",
-                  placeholder: "Create some chattr around this opportunity"
+                  placeholder: "Create some chattr around this job opportunity"
                 },
                 domProps: { value: _vm.chattr },
                 on: {
