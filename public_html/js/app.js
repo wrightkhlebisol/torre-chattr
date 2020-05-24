@@ -1989,31 +1989,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      foundname: "",
+      profweight: "",
       chattr: "",
       toggleChattr: false,
       username: "",
       searchUser: false,
-      searchUserError: false
+      searchUserError: "",
+      chatterDisabled: true
     };
   },
   methods: {
     getUserProfile: function getUserProfile() {
       var _this = this;
 
-      this.searchUser = true;
-      axios.post("/getTorreDetails", {
-        'user': this.username
-      }).then(function (res) {
-        _this.searchUser = false;
+      if (this.username) {
+        this.searchUser = true;
+        axios.post("/getTorreDetails", {
+          'user': this.username
+        }).then(function (res) {
+          _this.searchUser = false;
 
-        if (res.code == "011002") {
-          _this.searchUserError = true, console.log(res.code);
-        } else {
-          console.log(res);
-        }
-      })["catch"](function (e) {
-        return console.log(e);
-      });
+          if (res.data.code && res.data.code == "011002") {
+            _this.searchUserError = "".concat(res.data.message, " You can't create a chattr yet");
+          } else {
+            _this.chatterDisabled = false;
+            _this.searchUserError = "";
+            _this.foundname = res.data.person.name;
+            _this.profweight = res.data.person.weight;
+          }
+        })["catch"](function (e) {
+          return console.log(e);
+        });
+      } else {
+        this.searchUserError = "Enter username to proceed";
+        this.chatterDisabled = true;
+      }
     },
     toggleCreateChattr: function toggleCreateChattr() {
       this.toggleChattr = !this.toggleChattr;
@@ -37710,7 +37721,10 @@ var render = function() {
                 ],
                 staticClass:
                   "w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm",
-                attrs: { type: "text", placeholder: "Your Torre username" },
+                attrs: {
+                  type: "text",
+                  placeholder: "Enter your Torre username to begin"
+                },
                 domProps: { value: _vm.username },
                 on: {
                   blur: _vm.getUserProfile,
@@ -37731,9 +37745,7 @@ var render = function() {
               _vm._v(" "),
               _vm.searchUserError
                 ? _c("p", { staticClass: "text-red-400 text-xs" }, [
-                    _vm._v(
-                      "..invalid username, please update the username field"
-                    )
+                    _vm._v(_vm._s(_vm.searchUserError))
                   ])
                 : _vm._e()
             ]),
@@ -37750,6 +37762,8 @@ var render = function() {
               staticClass:
                 "w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm",
               attrs: {
+                disabled: _vm.chatterDisabled,
+                required: "",
                 name: "chattr",
                 id: "chattr",
                 placeholder: "Create some chattr around this job opportunity"
@@ -37765,15 +37779,25 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("input", {
-              staticClass:
-                "cursor-pointer rounded-md py-2 px-5 text-white text-sm bg-black",
-              attrs: { type: "submit", value: "Publish" }
-            }),
+            !_vm.chatterDisabled
+              ? _c("input", {
+                  staticClass:
+                    "cursor-pointer rounded-md py-2 px-5 text-white text-sm bg-black",
+                  attrs: { type: "submit", value: "Publish" }
+                })
+              : _vm._e(),
             _vm._v(" "),
-            _c("p", { staticClass: "text-red-400" }, [
-              _vm._v("User found: " + _vm._s(_vm.username))
-            ])
+            !_vm.chatterDisabled
+              ? _c("p", { staticClass: "text-green-400" }, [
+                  _vm._v(
+                    "User " +
+                      _vm._s(_vm.foundname) +
+                      " with profile weight " +
+                      _vm._s(_vm.profweight) +
+                      " found"
+                  )
+                ])
+              : _vm._e()
           ])
         ])
       : _vm._e()

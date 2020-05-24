@@ -4,14 +4,14 @@
         <div v-if="toggleChattr">
             <form @submit="createChattr">
                 <div class="mb-2">
-                    <input type="text" class="w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm" placeholder="Your Torre username" v-model="username" @blur="getUserProfile">
+                    <input type="text" class="w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm" placeholder="Enter your Torre username to begin" v-model="username" @blur="getUserProfile">
 
                     <p class="text-green-400 text-xs" v-if="searchUser">..fetching user records from torre servers</p>
-                    <p class="text-red-400 text-xs" v-if="searchUserError">..invalid username, please update the username field</p>
+                    <p class="text-red-400 text-xs" v-if="searchUserError">{{ searchUserError }}</p>
                 </div>
-                <textarea class="w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm" name="chattr" id="chattr" placeholder="Create some chattr around this job opportunity" v-model="chattr"></textarea>
-                <input type="submit" class="cursor-pointer rounded-md py-2 px-5 text-white text-sm bg-black" value="Publish">
-                <p class="text-red-400">User found: {{ username }}</p>
+                <textarea :disabled="chatterDisabled" required class="w-full p-2 h-30 border-solid border-2 rounded-md border-black-200 sm:text-xs text-sm" name="chattr" id="chattr" placeholder="Create some chattr around this job opportunity" v-model="chattr"></textarea>
+                <input v-if="!chatterDisabled" type="submit" class="cursor-pointer rounded-md py-2 px-5 text-white text-sm bg-black" value="Publish">
+                <p  v-if="!chatterDisabled" class="text-green-400">User {{ foundname }} with profile weight {{profweight }} found</p>
             </form>
         </div>
     </span>
@@ -22,28 +22,38 @@
     export default {
         data() {
             return {
+                foundname: "",
+                profweight: "",
                 chattr: "",
                 toggleChattr: false,
                 username: "",
                 searchUser: false,
-                searchUserError: false,
+                searchUserError: "",
+                chatterDisabled: true
             }
         },
         methods: {
             getUserProfile(){
-                this.searchUser = true;
-                axios.post(`/getTorreDetails`, {
-                    'user': this.username
-                })
-                .then((res) => {
-                    this.searchUser = false;
-                    if(res.code == "011002"){
-                        this.searchUserError = true,
-                        console.log(res.code)
-                    }else{
-                        console.log(res)
-                    }
-                }).catch(e => console.log(e))
+                if(this.username){
+                    this.searchUser = true;
+                    axios.post(`/getTorreDetails`, {
+                        'user': this.username
+                    })
+                    .then((res) => {
+                        this.searchUser = false;
+                        if(res.data.code && (res.data.code == "011002")){
+                            this.searchUserError = `${res.data.message} You can't create a chattr yet`
+                        }else{
+                            this.chatterDisabled = false;
+                            this.searchUserError = ""
+                            this.foundname = res.data.person.name
+                            this.profweight = res.data.person.weight
+                        }
+                    }).catch(e => console.log(e))
+                }else{
+                    this.searchUserError = "Enter username to proceed";
+                    this.chatterDisabled = true;
+                }
             },
             toggleCreateChattr(){
                 this.toggleChattr = !this.toggleChattr;

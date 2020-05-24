@@ -19,3 +19,4 @@
 - Created dynamic like / unlike feature
 - Converted public folder to public_html to deploy on subdomain
 - Deployed to the server
+- Verify that entered username is present on the Torre server and display full name and profile weight
